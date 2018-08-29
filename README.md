@@ -12,7 +12,6 @@
 ## Features
 - [x] Includes production-ready WSGI/HTTP server ([bjoern](https://github.com/jonashaag/bjoern)).
 - [x] Python 3 ONLY.
-- [] Vuejs.
 
 ## WSGI/HTTP Server
 To use the included WSGI/HTTP server do as follows:
