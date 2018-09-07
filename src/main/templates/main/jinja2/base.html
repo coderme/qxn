@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    <link rel="stylesheet" href="/static/css/pretty.css">
+    <title>{% block title %}{% endblock %} | QXN</title>
+    {% endblock %}
+</head>
+
+
+<body>
+  <header>
+  </header>
+
+  
+  <main>{% block main %}{% endblock %}</main>
+
+  
+  <aside>
+
+  </aside>
+  
+  <footer>
+    {% block footerlinks %}
+    {% endblock %}
+
+    {% block sociallinks %}
+    {% endblock %}
+    
+    {% block copyright %}
+      &copy; Copyright {{ now | date('Y') }}  by <a href="https://coderme.com/?src=qxn">CoderMe</a>.
+    {% endblock %}
+   </footer>
+    
+</body>
+</html>
