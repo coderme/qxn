@@ -1,8 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.core.urlresolvers import reverse_lazy
-
-# DateData
+from django.utils.text import slugify
 
 
 class DateData(models.Model):
@@ -60,21 +59,24 @@ class IP(models.Model):
         abstract = True
 
 
-class Tag(Title):
+class Tag(models.Model):
+    slug = models.SlugField(allow_unicode=True)
 
     def get_absolute_url(self):
-      # slug =
-        return reverse_lazy("tagged", args=(slug,), current_app="main")
+        return reverse_lazy("tagged", args=(self.slug,), current_app="main")
 
 
 class Category(Title, Content, DateData):
-    pass
+    slug = models.SlugField(unique=True, allow_unicode=True)
+
+    def get_absolute_url(self):
+        return reverse_lazy("category", args=(self.slug,), current_app="main")
 
 
 class Question(User, IP, Title, Content, Tagged, Voted, DateData):
     category = models.ForeignKey("Category")
     closed = models.BooleanField(default=False)
-    slug = models.SlugField(db_index=True, unique=True, max_length=200)
+    slug = models.SlugField(unique=True, max_length=200, allow_unicode=True)
 
     def get_absolute_url(self):
         return reverse_lazy("question_details", args=(self.slug,), current_app="main")
@@ -87,7 +89,7 @@ class Answer(User, IP, Title, Content, Tagged, Voted, DateData):
 
 class Comment(User, IP, Content, Voted, DateData):
     question = models.ForeignKey(
-        'Question', blanl=True, on_delete=models.PROTECT)
+        'Question', blank=True, on_delete=models.PROTECT)
     answer = models.ForeignKey('Answer', blank=True, on_delete=models.PROTECT)
     comment = models.ForeignKey(
         'Comment', blank=True, on_delete=models.PROTECT)

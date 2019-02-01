@@ -27,8 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['localhost',
                  '127.0.0.1',
-]
-
+                 ]
 
 
 # Application definition
@@ -40,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # main app of qxn
+    'main',
 ]
 
 MIDDLEWARE = [
@@ -62,7 +63,7 @@ TEMPLATES = [
         'OPTIONS': {
             'environment': 'qxn.jinja2.enviroment',
         },
-    },     
+    },
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
@@ -129,7 +130,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
 
 
 # load any custom settings
