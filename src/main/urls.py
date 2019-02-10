@@ -38,5 +38,4 @@ urlpatterns = [
     path('downvote/reply/<int:pk>/',
          views.downvote_reply, name='downvote_reply'),
 
-
 ]
